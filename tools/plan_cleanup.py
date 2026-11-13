@@ -103,8 +103,10 @@ def main():
     out.mkdir(parents=True, mode=0o700)
     for action in ("apply", "restore"):
         sql = make_sql(rows, restore=action == "restore")
-        (out / f"{action}.sql").write_text(sql)
-        (out / f"{action}.sh").write_text(make_shell(sql))
+        # newline="\n": these run through the TV's /bin/sh; a platform-default
+        # CRLF write (e.g. on Windows) corrupts them there.
+        (out / f"{action}.sql").write_text(sql, newline="\n")
+        (out / f"{action}.sh").write_text(make_shell(sql), newline="\n")
     manifest = {"model": profile["model"], "firmware": profile["firmware"], "groups": args.groups,
                 "apps": [{"app_id": app, **dict(zip(FIELDS, vals))} for app, vals in rows]}
     (out / "before.json").write_text(json.dumps(manifest, indent=2) + "\n")

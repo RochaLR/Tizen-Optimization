@@ -19,8 +19,17 @@ sys.path.insert(0, str(ROOT / "vendor"))
 from samsung_tv_root.archive_root import probe, _check_target, _capture
 from samsung_tv_root.sdb import SdbClient, find_sdb
 
-PROFILE = json.loads((ROOT / "profiles/un75u8000ffxza-1300.9.json").read_text())
+DEFAULT_PROFILE = "un75u8000ffxza-1300.9"
 STAGE = "/home/owner/share/tmp/sdk_tools/quiet-tizen"
+
+
+def load_profile(name):
+    if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.-]{0,100}", name):
+        raise ValueError("Use a simple profile name without directory components.")
+    path = (ROOT / "profiles" / f"{name}.json")
+    if path.resolve().parent != (ROOT / "profiles").resolve():
+        raise ValueError("Profile must live directly under profiles/.")
+    return json.loads(path.read_text())
 
 
 def private_path(path):
@@ -48,10 +57,10 @@ def observed_model(client):
     return rows[0][-1]
 
 
-def check_identity(model, firmware):
-    if model != PROFILE["model"]:
+def check_identity(profile, model, firmware):
+    if model != profile["model"]:
         raise ValueError(f"Unsupported model {model!r}; stop and investigate a separate profile.")
-    if firmware != PROFILE["firmware"]:
+    if firmware != profile["firmware"]:
         raise ValueError("Supply --firmware with the exact version read from About This TV. "
                          "Only the documented build is accepted. Do not guess this value.")
 
@@ -89,6 +98,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--host", required=True, help="The owner's TV IPv4 address; never auto-discovered")
     parser.add_argument("--firmware", help="Operator-verified version from the TV's About screen")
+    parser.add_argument("--profile", default=DEFAULT_PROFILE,
+                         help="Name of a profiles/<name>.json file (without extension) matching this exact TV")
     parser.add_argument("--sdb", help="Path to Samsung's separately installed SDB")
     parser.add_argument("--callback-host", help="This computer's LAN IPv4 if route detection is wrong")
     sub = parser.add_subparsers(dest="action", required=True)
@@ -121,7 +132,8 @@ def main():
         print(_capture(client, "uname -srmo; readlink -f /usr/share/dotnet.tizen/netcoreapp"))
         print("Preflight only. Firmware must be read on the TV; root is not yet confirmed.")
         return
-    check_identity(model, args.firmware)
+    profile = load_profile(args.profile)
+    check_identity(profile, model, args.firmware)
     if args.action == "push":
         if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.-]{0,100}", args.name):
             raise ValueError("Use a simple staging filename without directory components.")
@@ -146,7 +158,8 @@ def main():
         if len(script) > 45000:
             raise ValueError("Script too large for the bounded command channel; split into phases.")
         encoded = base64.b64encode(script).decode()
-        command = f"printf '%s' {shlex.quote(encoded)} | /bin/sh -s -- " + shlex.join(args.arg)
+        command = (f"printf '%s' {shlex.quote(encoded)} | base64 -d | /bin/sh -s -- "
+                   + shlex.join(args.arg))
     else:
         if args.arg:
             raise ValueError("--arg requires --script.")

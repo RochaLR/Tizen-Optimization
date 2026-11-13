@@ -26,6 +26,14 @@ fallback is described in [provenance](docs/provenance.md).
 No Samsung SDB executable, firmware, SDK/reference assembly, stock app
 binary, account database or private backup is distributed.
 
+`launcher/assets/feature-ps5.svg` embeds the official PlayStation 5
+logo/wordmark, dated 7 January 2020, by Sony Interactive Entertainment, from
+[Wikimedia Commons](https://commons.wikimedia.org/wiki/File:PlayStation_5_logo_and_wordmark.svg).
+Unlike the other publisher marks below, this one is tracked in the
+repository: Commons tags it as a simple text/geometric-shape logo below the
+threshold of originality and therefore in the public domain, though it may
+still be restricted as a trademark. Recolored to white; no other change.
+
 Publisher streaming-app artwork is not bundled. `launcher/artwork-sources.json`
 records optional sources and transformations; `tools/fetch_artwork.py` downloads
 selected artwork into ignored local files. Those assets and associated

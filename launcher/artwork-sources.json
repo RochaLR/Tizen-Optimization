@@ -187,6 +187,99 @@
       }
     },
     {
+      "name": "Moonlight",
+      "id": "MoonLightS.MoonlightWasm",
+      "asset": "app-icons/moonlight.svg",
+      "source_path": "https://raw.githubusercontent.com/moonlight-stream/moonlight-qt/master/app/res/moonlight.svg",
+      "source_kind": "Official app icon from the moonlight-stream/moonlight-qt open-source repository (GPLv3)",
+      "source_page": "https://github.com/moonlight-stream/moonlight-qt/tree/master/app/res",
+      "publisher": "Moonlight Game Streaming Project",
+      "catalog": {
+        "Name": "Moonlight",
+        "Id": "MoonLightS.MoonlightWasm",
+        "Asset": "app-icons/moonlight.svg",
+        "Description": "Game streaming",
+        "Fit": "contain",
+        "Background": "#1C1E24",
+        "Width": 256,
+        "Height": 256
+      }
+    },
+    {
+      "name": "Crunchyroll",
+      "id": "OGLLvqej7u.CrunchyrollWebApp",
+      "asset": "app-icons/crunchyroll.png",
+      "source_path": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/fe/0c/2d/fe0c2d1a-872f-cb7d-46c9-40f3e7babd49/Placeholder.mill/1024x1024bb.png",
+      "source_kind": "Official publisher App Store artwork at 1024 pixels (2024 brand refresh)",
+      "source_page": "https://apps.apple.com/us/app/crunchyroll/id329913454",
+      "catalog": {
+        "Name": "Crunchyroll",
+        "Id": "OGLLvqej7u.CrunchyrollWebApp",
+        "Asset": "app-icons/crunchyroll.png",
+        "Description": "Anime",
+        "Fit": "cover",
+        "Background": "#F47521",
+        "Width": 1024,
+        "Height": 1024
+      }
+    },
+    {
+      "name": "Globoplay",
+      "id": "LnLzvqrcEY.globo",
+      "asset": "app-icons/globoplay.png",
+      "source_path": "https://is1-ssl.mzstatic.com/image/thumb/PurpleSource221/v4/9b/46/b6/9b46b6b9-45f9-c155-8093-87ae340f90dc/Placeholder.mill/1024x1024bb.png",
+      "source_kind": "Official publisher App Store artwork at 1024 pixels",
+      "source_page": "https://apps.apple.com/br/app/globoplay-s%C3%A9ries-novelas-e/id536321738",
+      "publisher": "Globo Comunicacao e Participacoes S.A.",
+      "catalog": {
+        "Name": "Globoplay",
+        "Id": "LnLzvqrcEY.globo",
+        "Asset": "app-icons/globoplay.png",
+        "Description": "Movies & series",
+        "Fit": "cover",
+        "Background": "#E60000",
+        "Width": 1024,
+        "Height": 1024
+      }
+    },
+    {
+      "name": "Stremio",
+      "id": "IkWsFHtOY9.Stremio",
+      "asset": "app-icons/stremio.png",
+      "source_path": "https://play-lh.googleusercontent.com/OvTwEXzvUbeyfqdXd1vZiTfbBOTdMAA6EWw5TV00PiSirn7C1iz__HVD6PfXCHkN9quH_XdoPwCIT3GhB1Ukmw=s1024",
+      "source_kind": "Official publisher Google Play Store artwork",
+      "source_page": "https://play.google.com/store/apps/details?id=com.stremio.one",
+      "catalog": {
+        "Name": "Stremio",
+        "Id": "IkWsFHtOY9.Stremio",
+        "Asset": "app-icons/stremio.png",
+        "Description": "Movies & series",
+        "Fit": "cover",
+        "Background": "#7B5BF5",
+        "Width": 512,
+        "Height": 512
+      }
+    },
+    {
+      "name": "Samsung TV Plus",
+      "id": "HEPsqFNie0.tvplusstandalone",
+      "asset": "app-icons/tvplus.png",
+      "source_path": "https://play-lh.googleusercontent.com/NFrY6S5a_O7NnsFTzZBVN9RpZXavlXh_51wnj8lEK4VMV73VuaKHlXZAIMbyepSBnhujEjybIKXDbDeAtZoI=s1024",
+      "source_kind": "Official publisher Google Play Store artwork (com.samsung.android.tvplus)",
+      "source_page": "https://play.google.com/store/apps/details?id=com.samsung.android.tvplus",
+      "publisher": "Samsung Electronics Co., Ltd.",
+      "catalog": {
+        "Name": "Samsung TV Plus",
+        "Id": "HEPsqFNie0.tvplusstandalone",
+        "Asset": "app-icons/tvplus.png",
+        "Description": "Free live channels",
+        "Fit": "cover",
+        "Background": "#0F1115",
+        "Width": 512,
+        "Height": 512
+      }
+    },
+    {
       "name": "Xbox",
       "id": "GHI3a0zMSx.XboxGamePass",
       "asset": "app-icons/xbox-glass.png",

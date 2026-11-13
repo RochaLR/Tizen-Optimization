@@ -1,0 +1,4 @@
+# The recipes run through /bin/sh on the TV; CRLF (e.g. from a Windows
+# checkout with core.autocrlf=true) breaks them there. Force LF for anything
+# executed as a POSIX shell script or embedded verbatim in a remote command.
+*.sh text eol=lf

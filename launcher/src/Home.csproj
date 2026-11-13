@@ -1,6 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
  <PropertyGroup>
-  <OutputType>Exe</OutputType><TargetFramework>net6.0</TargetFramework><AssemblyName>BixbyPromotion</AssemblyName>
+  <!-- Defaults to the documented U8000F host container; override via the
+       MSBuild property LauncherAssemblyName to target a different
+       repurposed app on another TV (see tools/build.py launcher assembly
+       name option). -->
+  <LauncherAssemblyName Condition="'$(LauncherAssemblyName)'==''">BixbyPromotion</LauncherAssemblyName>
+  <OutputType>Exe</OutputType><TargetFramework>net6.0</TargetFramework><AssemblyName>$(LauncherAssemblyName)</AssemblyName>
   <UseAppHost>false</UseAppHost><EnableDefaultCompileItems>false</EnableDefaultCompileItems><DebugType>none</DebugType><ImplicitUsings>disable</ImplicitUsings><Nullable>disable</Nullable>
  </PropertyGroup>
  <ItemGroup><Compile Include="Home.cs" /><Compile Include="AppLibrary.cs" /></ItemGroup>

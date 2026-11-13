@@ -350,6 +350,8 @@ class SdbClient:
             local_path.write_text(
                 f"/bin/rm -f {remote_path}\n{command}\n",
                 encoding="utf-8",
+                newline="\n",  # this runs through the TV's /bin/sh; a platform
+                                # default CRLF write (e.g. on Windows) breaks it
             )
             self.push(local_path, remote_path)
         return f". {remote_path}"

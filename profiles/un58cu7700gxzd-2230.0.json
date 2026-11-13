@@ -1,0 +1,208 @@
+{
+  "profile_version": 1,
+  "model": "UN58CU7700GXZD",
+  "firmware": "T-KSU2ECUABC-0090-2230.0",
+  "os": "unconfirmed; read from About This TV, not yet cross-checked against a Tizen version table",
+  "kernel": "Linux 5.4.77 ARMv7",
+  "runtime": "6.0.9",
+  "registry": "/opt/dbspace/.pkgmgr_parser.db",
+  "groups": {
+    "advertising": {
+      "description": "ACR, viewing-analysis, promotion and advertising components confirmed present on this exact TV (via .local/cu7700-app-inventory.csv). Package names identify purpose; this is not a traffic audit. 2 IDs from the U8000F profile (yL49PNFmjW.PromotionApp, yL49PNFmjW.service) do not exist on this TV and are omitted.",
+      "app_ids": [
+        "com.samsung.tizen.samsung-analytics",
+        "com.samsung.tv.acr",
+        "com.samsung.tv.canalysis-service",
+        "com.samsung.tv.contents-recognition-dbmgr",
+        "com.samsung.tv.adagent-service",
+        "com.samsung.tv.pisa-service",
+        "org.tizen.pisa-control-service",
+        "com.samsung.tv.targeted-ad-service"
+      ]
+    },
+    "advertising-extra": {
+      "description": "2 more ad/ACR apps found on this TV that are not in the U8000F profile at all: com.samsung.tv.coba.adagent (a real dotnet-inhouse app, exec Com.Samsung.TV.CoBA.Advertise.dll -- 'Advertise' is literally in its class name) and com.samsung.tv.iacr (a native capp service, likely 'improved/international ACR'). Added as a separate phase so its own restore stays isolated from the advertising-01 phase.",
+      "app_ids": [
+        "com.samsung.tv.coba.adagent",
+        "com.samsung.tv.iacr"
+      ]
+    },
+    "voice": {
+      "description": "Bixby, Alexa, wake-word and voice UI. All 17 IDs from the U8000F profile confirmed present on this TV, same default state. Opt in only if voice functions are unwanted.",
+      "app_ids": [
+        "com.samsung.tv.alexa-client",
+        "com.samsung.tv.alexa-fullscreen-app",
+        "com.samsung.tv.bixby-context-client",
+        "com.samsung.tv.bixby-prov",
+        "com.samsung.tv.bixbycapsuleviewer",
+        "com.samsung.tv.mybixby",
+        "com.samsung.tv.ondevice-voice",
+        "com.samsung.tv.utterance-recommender-app",
+        "com.samsung.tv.utterance-recommender-core",
+        "com.samsung.tv.voice-instant-app",
+        "com.samsung.tv.voiceassistant-music",
+        "com.samsung.tv.wakeup-engine-alexa",
+        "com.samsung.tv.wakeup-engine-bixby",
+        "org.tizen.voice-app",
+        "org.tizen.voice-app-service",
+        "org.tizen.voice-client",
+        "org.tizen.voice-onboarding"
+      ]
+    },
+    "context": {
+      "description": "AI/context suggestions and content-grab features confirmed present on this TV. The 6 newer AICompanion/ai-discovery IDs from the U8000F (2025) profile do not exist on this 2023 TV and are omitted. May remove useful smart functions.",
+      "app_ids": [
+        "com.samsung.tv.context-aware-agent",
+        "com.samsung.tv.context-aware-agent-toast-view",
+        "com.samsung.tv.context-aware-grab-control",
+        "com.samsung.tv.context-aware-server-requester",
+        "com.samsung.tv.context-aware-service",
+        "com.samsung.tv.vif",
+        "content-grab-service"
+      ]
+    },
+    "smart-extras": {
+      "description": "SmartThings, gaming-hub background helpers, health and ambience confirmed present on this TV. smartthingsfind-* and samsunghealth-service-tv from the U8000F profile do not exist here; this TV instead has extra health-mde-setting/health-mde-workout-tracker apps not yet reviewed (not included below). Optional; HDMI-focused setup.",
+      "app_ids": [
+        "com.samsung.tizen.smartthings-client",
+        "com.samsung.tv.adplayer",
+        "com.samsung.tv.ambient-sound",
+        "com.samsung.tv.aov-dashboard",
+        "com.samsung.tv.ghdaemon",
+        "com.samsung.tv.ghservice",
+        "com.samsung.tv.health-mde-service",
+        "com.samsung.tv.health-mde-service-view"
+      ]
+    },
+    "light-shell": {
+      "description": "Sidebar and browser, confirmed present. Apply only after launcher, QuickLaunch bridge and settings routing are validated on this TV -- NOT yet done, since com.samsung.tv.bixby-promotion (the launcher host container on U8000F) does not exist on this TV.",
+      "app_ids": [
+        "com.samsung.tv.home.sidebar",
+        "org.tizen.browser"
+      ]
+    },
+    "tv-plus": {
+      "description": "Samsung TV Plus startup, confirmed present under the same ID as the U8000F. Removes access to that app until restored. RE-ENABLED on this TV on owner's request (restore.sh for tv-plus-01 + stop-marker restore for slive-provider-daemon.service both run) -- the owner uses TV Plus regularly, and it now has a catalog shortcut in Quiet Home (app-icons/tvplus.png).",
+      "app_ids": [
+        "HEPsqFNie0.tvplusstandalone"
+      ]
+    }
+  },
+  "stop_markers": [
+    {
+      "unit": "pisa-service.service",
+      "marker": "pisa-service",
+      "group": "advertising"
+    },
+    {
+      "unit": "canalysis-service.service",
+      "marker": "canalysis-daemon",
+      "group": "advertising"
+    },
+    {
+      "unit": "com.samsung.tv.bixby-prov.service",
+      "marker": "com.samsung.tv.bixby-prov",
+      "group": "voice"
+    },
+    {
+      "unit": "com.samsung.tv.ondevice-voice.service",
+      "marker": "com.samsung.tv.ondevice-voice",
+      "group": "voice"
+    },
+    {
+      "unit": "org.tizen.voice-app.service",
+      "marker": "org.tizen.voice-app",
+      "group": "voice"
+    },
+    {
+      "unit": "org.tizen.voice-client.service",
+      "marker": "org.tizen.voice-client",
+      "group": "voice"
+    },
+    {
+      "unit": "com.samsung.tv.context-aware-agent.service",
+      "marker": "com.samsung.tv.context-aware-agent",
+      "group": "context"
+    },
+    {
+      "unit": "com.samsung.tv.context-aware-service.service",
+      "marker": "com.samsung.tv.context-aware-service",
+      "group": "context"
+    },
+    {
+      "unit": "com.samsung.tv.ghdaemon.service",
+      "marker": "com.samsung.tv.ghdaemon",
+      "group": "smart-extras"
+    },
+    {
+      "unit": "slive-provider-daemon.service",
+      "marker": "slive-provider-daemon",
+      "group": "tv-plus"
+    }
+  ],
+  "runtime_only_masks": [],
+  "preferences": [
+    {
+      "key": "db/was/preload_by_country",
+      "type": "string",
+      "value": "false"
+    },
+    {
+      "key": "db/menu/autorun_tv_plus",
+      "type": "bool",
+      "value": "0"
+    },
+    {
+      "key": "db/menu/voice/voice_activated",
+      "type": "bool",
+      "value": "0"
+    },
+    {
+      "key": "db/menu/voice/wakeupless_status",
+      "type": "int",
+      "value": "0"
+    },
+    {
+      "key": "db/si_service/voice_recog_enable",
+      "type": "bool",
+      "value": "0"
+    },
+    {
+      "key": "db/multi-assistant/prelaunch_mode",
+      "type": "bool",
+      "value": "0"
+    }
+  ],
+  "was_cache": {
+    "table": "WASConfigTable",
+    "row": "RESERVED_18",
+    "json_path": "$.rsp.preloadByCountry",
+    "after": "false"
+  },
+  "launcher": {
+    "status": "SET AS HOME/STARTUP (owner-confirmed, visibly verified first). Probe.dll set-home + vconftool db/appfw/home_appid and db/appfw/startup_appid all point to com.samsung.tv.AccountNudgeService now. Original value for all three was com.samsung.tv.csfs, saved in operation-and-sources-before.txt / preferences-before.txt under the home-01 backup; restore-launcher.sh (this profile's adapted version, taking app_id as an explicit argument) reverts it.",
+    "host_app_id": "com.samsung.tv.AccountNudgeService",
+    "host_dll": "com.samsung.tv.AccountNudgeService.dll",
+    "host_owner_uid_gid": "201:0",
+    "app_launcher_uid": 5001,
+    "why_this_host": "The first search (app_type='dotnet' only) found no usable candidate -- this TV's only 3 such apps are AirPlay components with zero dotnet/NUI references despite the tag. A broader search for app_type LIKE '%dotnet%' found ~130 real dotnet-inhouse apps. com.samsung.tv.AccountNudgeService ('Samsung Account UI Application', a promotional account-signin nudge) was chosen over com.samsung.tv.voiceassistant-music because its manifest declares no OS-level app-control auto-launch trigger. com.samsung.tv.csfs (the real Home/FirstScreen shell, 537KB AOT, 28+ privileges including bluetooth/settings admin and a watchdog) was deliberately left untouched -- too deeply integrated to safely repurpose, unlike the dormant AccountNudgeService.",
+    "build_adaptations_needed": [
+      "tools/build.py and launcher/src/Home.csproj now take --launcher-assembly-name / MSBuild LauncherAssemblyName (default BixbyPromotion for the documented U8000F flow) instead of a fixed AssemblyName.",
+      "recipes/install-launcher.sh and recipes/restore-launcher.sh now take the host app_id and dll filename as explicit arguments instead of hardcoding com.samsung.tv.bixby-promotion/BixbyPromotion.dll.",
+      "The host's original runtimeconfig.json declared netcoreapp2.0, not net6.0 (unlike bixby-promotion on U8000F, which apparently already matched net6.0) -- install-launcher.sh now also deploys and backs up a matching runtimeconfig.json, not just the .dll.",
+      "Home.cs's Root path was hardcoded to the bixby-promotion path; fixed to resolve from Tizen.Applications.Application.Current.DirectoryInfo.Resource at OnCreate so the same build works under any host app_id.",
+      "launcher/src/QuickLaunch.cs (the separate settings-bridge app, docs/04-launcher.md) still hardcodes com.samsung.tv.bixby-promotion as its app_control target. Not yet fixed -- the settings bridge has not been attempted on this TV."
+    ],
+    "hdmi_sources": {
+      "api": "libsource-api.so get_source_list() / vconf memory/system/source_type, read via launcher/probe/Probe.cs",
+      "note": "Different wiring from the U8000F profile (13/14/15->HDMI1/2/3). On this TV sourceType 15 is the soundbar's ARC return channel, not a third HDMI input; get_source_list() never listed a third video source despite the owner's two consoles being on separate physical ports. Confirmed by manual switching through the native Home while reading Probe's current_source.",
+      "confirmed_mapping": {
+        "13": "PlayStation 5 (platform calls this port \"HDMI1\")",
+        "14": "Nintendo Switch (platform calls this port \"HDMI2\")",
+        "15": "NOT video -- soundbar ARC; excluded from RefreshSource()'s accepted range"
+      },
+      "home_cs_changes": "Feature/Dock calls and RefreshSource/SourceIndex in Home.cs updated to 13=PS5 (hero card, index 0), 14=Switch (portrait card, index 1). The third example 'HDMI 1' card from the U8000F layout was removed -- there is no third real source on this TV."
+    }
+  },
+  "_status": "PARTIAL: groups/app_ids/stop_markers above were verified present on this TV via fresh `tv exec` reads (inventory pull + `systemctl cat` for every marker's exact ConditionPathExists) -- not copied blindly from the U8000F profile. All 10 U8000F stop_markers matched byte-for-byte on this TV and were applied via recipes/stop-marker.sh. preferences/was_cache were applied and verified too. See the `launcher` key for the launcher investigation outcome (a viable host WAS found, unlike the first pass's conclusion) and its current install status. light-shell must still not be applied until the settings bridge and Home routing are also validated on this TV."
+}

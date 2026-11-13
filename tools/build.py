@@ -14,6 +14,10 @@ def main():
     parser.add_argument("target", choices=["payloads", "launcher", "all"])
     parser.add_argument("--dotnet", default=os.environ.get("DOTNET", "dotnet"))
     parser.add_argument("--framework", type=Path, default=ROOT / ".local/tv-framework")
+    parser.add_argument("--launcher-assembly-name", default="BixbyPromotion",
+                         help="Output assembly name for the Home build, matching the host "
+                              "app's own exec filename (without .dll) on the target TV. "
+                              "Defaults to the documented U8000F container.")
     args = parser.parse_args()
     jobs = []
     if args.target in ("payloads", "all"):
@@ -23,9 +27,11 @@ def main():
         for name in ("Tizen.NUI", "Tizen.Applications.Common", "Tizen.System", "Tizen"):
             if not (args.framework / f"{name}.dll").is_file():
                 parser.error(f"Missing {name}.dll. Read docs/04-launcher.md; these are not bundled.")
-        for name in ("Home", "QuickLaunch"):
-            jobs.append((ROOT / f"launcher/src/{name}.csproj", name, name,
-                         [f"-p:TV_FRAMEWORK_DIR={args.framework.resolve()}"]))
+        jobs.append((ROOT / "launcher/src/Home.csproj", "Home", "Home",
+                     [f"-p:TV_FRAMEWORK_DIR={args.framework.resolve()}",
+                      f"-p:LauncherAssemblyName={args.launcher_assembly_name}"]))
+        jobs.append((ROOT / "launcher/src/QuickLaunch.csproj", "QuickLaunch", "QuickLaunch",
+                     [f"-p:TV_FRAMEWORK_DIR={args.framework.resolve()}"]))
         jobs.append((ROOT / "launcher/probe/Probe.csproj", "Probe", "Probe", []))
     for project, output, intermediate, extra in jobs:
         subprocess.run([
@@ -38,7 +44,10 @@ def main():
     if args.target in ("launcher", "all"):
         destination = ROOT / ".local/package"
         destination.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(ROOT / ".local/build/Home/BixbyPromotion.dll", destination / "BixbyPromotion.dll")
+        home_dll = f"{args.launcher_assembly_name}.dll"
+        home_runtimeconfig = f"{args.launcher_assembly_name}.runtimeconfig.json"
+        shutil.copyfile(ROOT / ".local/build/Home" / home_dll, destination / home_dll)
+        shutil.copyfile(ROOT / ".local/build/Home" / home_runtimeconfig, destination / home_runtimeconfig)
         shutil.copyfile(ROOT / ".local/build/QuickLaunch/QuickLaunch.dll", destination / "QuickLaunch.dll")
         shutil.copyfile(ROOT / ".local/build/Probe/Probe.dll", destination / "Probe.dll")
         assets = destination / "quiet-home"
