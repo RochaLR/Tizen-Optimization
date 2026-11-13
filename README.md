@@ -14,6 +14,11 @@ original project, now installed as this TV's actual Home/startup app, plus
 a cleanup profile, generalized access/build tooling and rollback recipes
 specific to this device.
 
+![Quiet Home layout illustration](docs/quiet-home-preview.svg)
+
+*Layout illustration with public text-only app cards, matching this TV's
+actual two real inputs (PS5 on HDMI1, Switch on HDMI2) and dock shortcuts.*
+
 **This is a working case study, not a universal installer.** If you try
 this on another TV — even the "same" model in another size or region — read
 [AGENTS.md](AGENTS.md) and start with your own inventory. A matching brand,
