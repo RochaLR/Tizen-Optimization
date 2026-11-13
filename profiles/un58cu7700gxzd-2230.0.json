@@ -179,22 +179,6 @@
     "json_path": "$.rsp.preloadByCountry",
     "after": "false"
   },
-  "measured_state": {
-    "status": "SNAPSHOT ONLY, not a before/after comparison. No baseline was captured before cleanup started this session, so no improvement percentage can be honestly claimed -- see docs/07-performance.md's own caution against this. These are counts/readings taken after all cleanup, stop-markers, masks and the launcher were already applied.",
-    "captured_at": "2026-11-13T17:4x (same session, after full cleanup+launcher setup)",
-    "background_services_no_longer_auto_running": 13,
-    "background_services_breakdown": "9 stopped via stop_markers (pisa-service, canalysis-service, bixby-prov, ondevice-voice, voice-app, voice-client, context-aware-agent, context-aware-service, ghdaemon) + 4 masked for the current boot only (ipa, contents-recognition-service, sp-kpi, data-service). 42 more apps have app_disable=true in the registry but weren't necessarily running continuously before, so aren't counted as a process-count delta.",
-    "meminfo_kb": {
-      "MemTotal": 1616036,
-      "MemFree": 22048,
-      "MemAvailable": 388948,
-      "Cached": 388392,
-      "SwapFree": 477868
-    },
-    "process_count": 236,
-    "running_systemd_services": 126,
-    "to_get_a_real_before_after_number": "Would require restoring everything, rebooting, measuring, then reapplying and rebooting again -- not done, since it costs two reboots of the owner's TV and wasn't asked for beyond this snapshot."
-  },
   "launcher": {
     "status": "SET AS HOME/STARTUP (owner-confirmed, visibly verified first). Probe.dll set-home + vconftool db/appfw/home_appid and db/appfw/startup_appid all point to com.samsung.tv.AccountNudgeService now. Original value for all three was com.samsung.tv.csfs, saved in operation-and-sources-before.txt / preferences-before.txt under the home-01 backup; restore-launcher.sh (this profile's adapted version, taking app_id as an explicit argument) reverts it.",
     "host_app_id": "com.samsung.tv.AccountNudgeService",

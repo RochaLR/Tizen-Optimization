@@ -178,27 +178,6 @@ makes Samsung TV Plus hijack the boot/wake sequence ahead of whatever is set
 as Home, which would undo the whole point of setting Quiet Home as Home.
 TV Plus still works fine as a manual shortcut; it just never auto-launches.
 
-## Measured state (not a before/after number)
-
-No memory/process baseline was captured before cleanup started, so there is
-**no honest percentage to report** for how much faster or lighter this made
-the TV — see [docs/07-performance.md](docs/07-performance.md) for why this
-project avoids that kind of unverified claim. What was actually measured, as
-a snapshot after everything below was applied:
-
-| | |
-|---|---|
-| Background services confirmed no longer auto-running | 13 (9 stopped via stop-markers, 4 masked for the current boot) |
-| `MemAvailable` | ~380 MB of 1.6 GB total |
-| Running processes | 236 |
-| Running systemd service units | 126 |
-
-Getting a real before/after delta would mean restoring everything, rebooting,
-measuring, then reapplying and rebooting again — two full TV restarts purely
-for the benchmark. Full numbers and the exact services are in
-[profiles/un58cu7700gxzd-2230.0.json](profiles/un58cu7700gxzd-2230.0.json)'s
-`measured_state`.
-
 ## What hasn't been done yet
 
 - **Settings bridge** (`docs/04-launcher.md`'s `QuickLaunch` remap of the
