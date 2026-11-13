@@ -47,7 +47,6 @@ Clone the repository, open it in your coding agent, and use:
 | Firmware | `T-KSU2EFAKUC-0090-1300.9` | `T-KSU2ECUABC-0090-2230.0` (confirmed the latest version Samsung publishes for this model) |
 | Platform | Tizen 9.0, Linux 5.4.261, ARMv7, .NET 6.0.9 | Linux 5.4.77, ARMv7, .NET 6.0.9 |
 | Launcher host | `com.samsung.tv.bixby-promotion` (a dormant Bixby onboarding placeholder) | Does not exist on this TV. Uses `com.samsung.tv.AccountNudgeService` instead (see below) |
-| Wi-Fi | — | MediaTek MT7668 USB combo chip, driver `mt7668u-MTK.v5.1.0` |
 
 See [profiles/un58cu7700gxzd-2230.0.json](profiles/un58cu7700gxzd-2230.0.json)
 for the full recorded inventory, cleanup groups, stop-markers, preferences
