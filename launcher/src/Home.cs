@@ -308,7 +308,9 @@ public sealed class QuietHome : NUIApplication
  }
  void OnKey(object sender,Window.KeyEventArgs e)
  {
-  if(e.Key==null||e.Key.State!=Key.StateType.Down)return;string k=e.Key.KeyPressedName;
+  if(e.Key==null)return;
+  try{System.IO.File.AppendAllText("/tmp/quiet-home-keylog.txt",DateTime.Now.ToString("HH:mm:ss.fff")+" name="+e.Key.KeyPressedName+" code="+e.Key.KeyCode+" state="+e.Key.State+"\n");}catch{}
+  if(e.Key.State!=Key.StateType.Down)return;string k=e.Key.KeyPressedName;
   long now=Environment.TickCount64;if(k==lastKey&&now-lastKeyAt<180)return;lastKey=k;lastKeyAt=now;
   try{
    if(k=="XF86Home"){Home("home_key");return;}
